@@ -40,7 +40,6 @@
     <Compile Include="src\controllers\test_controller.py" />
     <Compile Include="src\controllers\__init__.py" />
     <Compile Include="src\DTO\__init__.py" />
-    <Compile Include="src\infra\constants\__init__.py" />
     <Compile Include="src\infra\controller_injector.py" />
     <Compile Include="src\infra\errors\APIError.py" />
     <Compile Include="src\infra\errors\__init__.py" />
@@ -129,6 +128,8 @@
     <Content Include="src\tests\__pycache__\__init__.cpython-34.pyc" />
     <Content Include="src\validation\__pycache__\validation_handler.cpython-34.pyc" />
     <Content Include="src\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="web.config" />
+    <None Include="web.debug.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
@@ -142,7 +143,6 @@
     <Folder Include="src\DTO\" />
     <Folder Include="src\DTO\schemas\" />
     <Folder Include="src\infra\" />
-    <Folder Include="src\infra\constants\" />
     <Folder Include="src\infra\errors\" />
     <Folder Include="src\infra\errors\__pycache__\" />
     <Folder Include="src\infra\patterns\" />
