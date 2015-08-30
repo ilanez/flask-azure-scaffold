@@ -29,12 +29,12 @@ def client(request):
     return client
 
 
-def test_get_campaign_hourly_stats(client):
+def test_get_data(client):
     """
-    Verifies successful call for acquiring a campaign's hourly statistics.
+    Verifies successful call for get_data
     :param client: The test client to simulate HTTP calls.
     """
-    post = client.post('/get_data', data=dict(campaign_id=6030858694602))
+    post = client.post('/get_data')
     assert post.status_code == 200
     assert post.content_type == "application/json"
 
