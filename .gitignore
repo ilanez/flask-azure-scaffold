@@ -7,7 +7,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -41,7 +40,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-*,cover
+*.cover
 
 # Translations
 *.mo
@@ -55,3 +54,18 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# intellij
+.idea/
+
+# VS
+obj/
+*.suo
+*.pubxml*
+*.publish*
+
+
+# Virtual environment setup for Azure
+env/*/*
+!/env/pyvenv.cfg # Must keep this for azure. Consider using autoenv for development - maybe install within recipe?
+!/env/azure*

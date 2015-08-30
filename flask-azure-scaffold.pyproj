@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <PythonProjectAlternateName>src</PythonProjectAlternateName>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>73c1b1e5-19d5-4365-88a1-0389e5031fde</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <OutputPath>.</OutputPath>
+    <StaticUriPattern>^/static/.*</StaticUriPattern>
+    <StaticUriRewrite>^/$(PythonProjectAlternateName)/static/.*</StaticUriRewrite>
+    <PythonWsgiHandler>$(PythonProjectAlternateName).app</PythonWsgiHandler>
+    <Name>flask-azure-scaffold</Name>
+    <RootNamespace>fb-wrapper</RootNamespace>
+    <InterpreterId>{a4c41eff-ba95-4cda-95b5-2970daf303a1}</InterpreterId>
+    <InterpreterVersion>3.4</InterpreterVersion>
+    <NameOfLastUsedPublishProfile>flask-fb-wrapper-dev - Web Deploy</NameOfLastUsedPublishProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="runserver.py" />
+    <Compile Include="src\configuration\configuration.py" />
+    <Compile Include="src\configuration\__init__.py" />
+    <Compile Include="src\controllers\base_controller.py" />
+    <Compile Include="src\controllers\test_controller.py" />
+    <Compile Include="src\controllers\__init__.py" />
+    <Compile Include="src\DTO\__init__.py" />
+    <Compile Include="src\infra\constants\__init__.py" />
+    <Compile Include="src\infra\controller_injector.py" />
+    <Compile Include="src\infra\errors\APIError.py" />
+    <Compile Include="src\infra\errors\__init__.py" />
+    <Compile Include="src\infra\object.py" />
+    <Compile Include="src\infra\patterns\singleton.py" />
+    <Compile Include="src\infra\__init__.py" />
+    <Compile Include="src\routes\error_handling\api_error_routes.py" />
+    <Compile Include="src\routes\route_definition.py" />
+    <Compile Include="src\routes\spec_definition.py" />
+    <Compile Include="src\routes\__init__.py" />
+    <Compile Include="src\setup.py" />
+    <Compile Include="src\tests\test_wrapper.py" />
+    <Compile Include="src\tests\__init__.py" />
+    <Compile Include="src\validation\validation_handler.py" />
+    <Compile Include="src\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.md" />
+    <Content Include="requirements.txt" />
+    <Content Include="runtime.txt" />
+    <Content Include="src\configuration\dependencies.sh" />
+    <Content Include="src\configuration\DEVELOPMENT\conf.yaml" />
+    <Content Include="src\configuration\PRODUCTION\conf.yaml" />
+    <Content Include="src\configuration\TEST\conf.yaml" />
+    <Content Include="src\configuration\__pycache__\configuration.cpython-34.pyc" />
+    <Content Include="src\configuration\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="src\controllers\__pycache__\account_controller.cpython-34.pyc" />
+    <Content Include="src\controllers\__pycache__\base_controller.cpython-34.pyc" />
+    <Content Include="src\controllers\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="src\DTO\schemas\get_data_request.json" />
+    <Content Include="src\infra\errors\__pycache__\APIError.cpython-34.pyc" />
+    <Content Include="src\infra\errors\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="src\infra\patterns\__pycache__\singleton.cpython-34.pyc" />
+    <Content Include="src\infra\__pycache__\controller_injector.cpython-34.pyc" />
+    <Content Include="src\infra\__pycache__\object.cpython-34.pyc" />
+    <Content Include="src\infra\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="src\routes\__pycache__\route_definition.cpython-34.pyc" />
+    <Content Include="src\routes\__pycache__\spec_definition.cpython-34.pyc" />
+    <Content Include="src\routes\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="src\static\css\print.css" />
+    <Content Include="src\static\css\reset.css" />
+    <Content Include="src\static\css\screen.css" />
+    <Content Include="src\static\css\style.css" />
+    <Content Include="src\static\css\typography.css" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-700.eot" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-700.svg" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-700.ttf" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-700.woff" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-700.woff2" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-regular.eot" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-regular.svg" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-regular.ttf" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-regular.woff" />
+    <Content Include="src\static\fonts\droid-sans-v6-latin-regular.woff2" />
+    <Content Include="src\static\images\explorer_icons.png" />
+    <Content Include="src\static\images\favicon-16x16.png" />
+    <Content Include="src\static\images\favicon-32x32.png" />
+    <Content Include="src\static\images\favicon.ico" />
+    <Content Include="src\static\images\logo_small.png" />
+    <Content Include="src\static\images\pet_store_api.png" />
+    <Content Include="src\static\images\throbber.gif" />
+    <Content Include="src\static\images\wordnik_api.png" />
+    <Content Include="src\static\lang\en.js" />
+    <Content Include="src\static\lang\es.js" />
+    <Content Include="src\static\lang\pt.js" />
+    <Content Include="src\static\lang\ru.js" />
+    <Content Include="src\static\lang\translator.js" />
+    <Content Include="src\static\lib\backbone-min.js" />
+    <Content Include="src\static\lib\handlebars-2.0.0.js" />
+    <Content Include="src\static\lib\highlight.7.3.pack.js" />
+    <Content Include="src\static\lib\jquery-1.8.0.min.js" />
+    <Content Include="src\static\lib\jquery.ba-bbq.min.js" />
+    <Content Include="src\static\lib\jquery.slideto.min.js" />
+    <Content Include="src\static\lib\jquery.wiggle.min.js" />
+    <Content Include="src\static\lib\marked.js" />
+    <Content Include="src\static\lib\swagger-oauth.js" />
+    <Content Include="src\static\lib\underscore-min.js" />
+    <Content Include="src\static\lib\underscore-min.map" />
+    <Content Include="src\static\o2c.html" />
+    <Content Include="src\static\swagger-ui.js" />
+    <Content Include="src\static\swagger-ui.min.js" />
+    <Content Include="src\static\swagger.json" />
+    <Content Include="src\templates\index.html" />
+    <Content Include="src\tests\__pycache__\test_wrapper.cpython-34-PYTEST.pyc" />
+    <Content Include="src\tests\__pycache__\test_wrapper.cpython-34.pyc" />
+    <Content Include="src\tests\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="src\validation\__pycache__\validation_handler.cpython-34.pyc" />
+    <Content Include="src\__pycache__\__init__.cpython-34.pyc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\configuration\" />
+    <Folder Include="src\configuration\DEVELOPMENT\" />
+    <Folder Include="src\configuration\PRODUCTION\" />
+    <Folder Include="src\configuration\TEST\" />
+    <Folder Include="src\configuration\__pycache__\" />
+    <Folder Include="src\controllers\" />
+    <Folder Include="src\controllers\__pycache__\" />
+    <Folder Include="src\DTO\" />
+    <Folder Include="src\DTO\schemas\" />
+    <Folder Include="src\infra\" />
+    <Folder Include="src\infra\constants\" />
+    <Folder Include="src\infra\errors\" />
+    <Folder Include="src\infra\errors\__pycache__\" />
+    <Folder Include="src\infra\patterns\" />
+    <Folder Include="src\infra\patterns\__pycache__\" />
+    <Folder Include="src\infra\__pycache__\" />
+    <Folder Include="src\routes\" />
+    <Folder Include="src\routes\error_handling\" />
+    <Folder Include="src\routes\__pycache__\" />
+    <Folder Include="src\static\" />
+    <Folder Include="src\static\css\" />
+    <Folder Include="src\static\fonts\" />
+    <Folder Include="src\static\images\" />
+    <Folder Include="src\static\lang\" />
+    <Folder Include="src\static\lib\" />
+    <Folder Include="src\templates\" />
+    <Folder Include="src\tests\" />
+    <Folder Include="src\tests\__pycache__\" />
+    <Folder Include="src\validation\" />
+    <Folder Include="src\validation\__pycache__\" />
+    <Folder Include="src\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{a4c41eff-ba95-4cda-95b5-2970daf303a1}</Id>
+      <BaseInterpreter>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</BaseInterpreter>
+      <Version>3.4</Version>
+      <Description>env (Python 64-bit 3.4)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>Amd64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

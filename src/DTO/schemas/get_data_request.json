@@ -1,0 +1,15 @@
+{
+  "get_data": {
+    "post": {
+      "type": "object",
+      "properties": {
+        "id":{
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+}

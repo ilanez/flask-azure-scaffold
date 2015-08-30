@@ -1,0 +1,543 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Tenengroup Printing API",
+        "description": "An API for association & usage of internal print services",
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "basePath": "/v1",
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "paths": {
+        "/print": {
+            "post": {
+                "summary": "Prints Data",
+                "description": "The Print endpoint prints sent data and returns information about the initiated printing process.\n> Doesn't require authentication, authorization should be based on calling machine.\n",
+                "parameters": [
+                    {
+                        "name": "PrintData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PrintData"
+                        },
+                        "description": "Wraps binary data scheduled for printing.\n    \n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A response array for every printable item issued.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PrintItemResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/print/impersonate": {
+            "post": {
+                "summary": "Prints Data",
+                "description": "The Print service endpoint prints sent data and returns information about the initiated printing process.\n> Requires authentication as a defined service entity, which can be used to impersonate a certain client.\n",
+                "parameters": [
+                    {
+                        "name": "PrintData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImpersonatedPrintData"
+                        },
+                        "description": "Wraps binary data scheduled for printing.\n    \n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A response array for every printable item issued.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PrintItemResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/associate": {
+            "post": {
+                "summary": "Associates a certain printer to a specific station",
+                "description": "The associate operation allows for administrators to associate clients(stations) with certain printers. \n> Requires authentication\n",
+                "parameters": [
+                    {
+                        "name": "AssociationData",
+                        "in": "body",
+                        "required": true,
+                        "description": "Represents the association to create.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AssociationData"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A success response. No DTO required."
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/printers": {
+            "get": {
+                "summary": "Acquires all available printers for association",
+                "description": "The printers operation allows for administrators to acquire available printers for selection \n> Requires authentication\n",
+                "responses": {
+                    "200": {
+                        "description": "An array containing all available printers.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Printer"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Default error structure",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Adds/updates printer.",
+                "description": "The add operation allows for administrators to add printers for selection\n> Requires authentication\n",
+                "parameters": [
+                    {
+                        "name": "Printers",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Printer"
+                            }
+                        },
+                        "description": "An array of printers to add/update\n> printer_id should be ignored if not found.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array containing all available printers.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Printer"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Default error structure",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletes specified printers.",
+                "description": "The delete operation allows for administrators to delete printers.\n> Requires authentication\n>> Also removes existing association to clients.\n",
+                "parameters": [
+                    {
+                        "name": "Printers",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "description": "Printer IDs",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "An array of printers to add/update\n> printer_id should be ignored if not found.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array containing deleted printers.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Printer"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Printer deletion error structure",
+                        "schema": {
+                            "$ref": "#/definitions/DeletedPrintersError"
+                        }
+                    }
+                }
+            }
+        },
+        "/clients": {
+            "get": {
+                "summary": "Acquires all available clients for association",
+                "description": "The printers operation allows for administrators to acquire available printers for selection \n> Requires authentication\n",
+                "responses": {
+                    "200": {
+                        "description": "An array containing all available printers.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Client"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Default error structure",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Adds/updates clients.",
+                "description": "The add operation allows for administrators to add clients for selection\n> Requires authentication\n",
+                "parameters": [
+                    {
+                        "name": "Clients",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Client"
+                            }
+                        },
+                        "description": "An array of clients to add/update\n> client_id should be ignored if not found.\n>> Should validate network_address/printer_address isn't already associated.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation was successful."
+                    },
+                    "default": {
+                        "description": "Client creation error",
+                        "schema": {
+                            "$ref": "#/definitions/CreateClientError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletes specified clients.",
+                "description": "The delete operation allows for administrators to delete clients.\n> Requires authentication\n>> Also removes existing association to printers.\n",
+                "parameters": [
+                    {
+                        "name": "Clients",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "description": "Client IDs",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "An array of clients to add/update\n> client_id should be ignored if not found.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array containing deleted clients.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Client"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Client deletion error structure.",
+                        "schema": {
+                            "$ref": "#/definitions/DeletedClientError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AssociationData": {
+            "properties": {
+                "client_id": {
+                    "type": "string"
+                },
+                "printer_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "PrintData": {
+            "properties": {
+                "print_items": {
+                    "type": "array",
+                    "description": "Print items",
+                    "items": {
+                        "$ref": "#/definitions/PrintItem"
+                    }
+                }
+            }
+        },
+        "ImpersonatedPrintData": {
+            "properties": {
+                "client_id": {
+                    "description": "An id representing the client to impersonate.",
+                    "type": "string"
+                },
+                "print_items": {
+                    "type": "array",
+                    "description": "Print items",
+                    "items": {
+                        "$ref": "#/definitions/PrintItem"
+                    }
+                }
+            }
+        },
+        "PrintItem": {
+            "properties": {
+                "blob_data": {
+                    "type": "string",
+                    "format": "byte",
+                    "description": "A base64 string of the printable data."
+                },
+                "printer_type": {
+                    "type": "string",
+                    "description": "The printer type required",
+                    "enum": [
+                        "PDF",
+                        "A4",
+                        "Brother"
+                    ]
+                },
+                "correlation_number": {
+                    "type": "string",
+                    "description": "A unique identifier used to correlate between array items | within the request context."
+                }
+            }
+        },
+        "PrintItemResponse": {
+            "properties": {
+                "correlation_number": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "A unique identifier used to correlate between array items | within the request context."
+                },
+                "associated_printer": {
+                    "type": "string",
+                    "description": "The printer's human readable name"
+                }
+            }
+        },
+        "Printer": {
+            "properties": {
+                "printer_id": {
+                    "description": "Should not be shown in UI, used for association requests.",
+                    "type": "string"
+                },
+                "printer_name": {
+                    "type": "string"
+                },
+                "printer_type": {
+                    "type": "string",
+                    "description": "The printer type required",
+                    "enum": [
+                        "PDF",
+                        "A4",
+                        "Brother"
+                    ]
+                },
+                "printer_address": {
+                    "type": "string"
+                },
+                "printer_network": {
+                    "type": "string"
+                }
+            }
+        },
+        "Client": {
+            "properties": {
+                "client_id": {
+                    "description": "should not be shown in UI, used for association request.",
+                    "type": "string"
+                },
+                "client_name": {
+                    "description": "The client's human readable name, if exists.",
+                    "type": "string"
+                },
+                "client_address": {
+                    "description": "The client's network identifier - should be either MAC/IP based - TBD.",
+                    "type": "string"
+                },
+                "client_network": {
+                    "description": "The network of the specified client, should be domain centric.",
+                    "type": "string"
+                }
+            }
+        },
+        "Error": {
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An enum representing what errors may have occurred.",
+                    "enum": [
+                        "PrintersNotAvailable(1)",
+                        "PrinterNotFound(2)",
+                        "NoPrinters(3)",
+                        "ClientIDNotFound(4)",
+                        "ConnectivityError(5)",
+                        "PermissionError(6)",
+                        "AssociationFailed(7)",
+                        "UnknownError(8)"
+                    ]
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        },
+        "DeletedPrintersError": {
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An enum representing what errors may have occurred.",
+                    "enum": [
+                        "NetworkError(1)",
+                        "ResourceNotFound(2)",
+                        "PermissionError(3)",
+                        "UnknownError(4)"
+                    ]
+                },
+                "deleted_printers": {
+                    "description": "An array of printers successfully deleted.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Printer"
+                    }
+                },
+                "failed_printers": {
+                    "description": "An array of printers that couldn't be deleted.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Printer"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "CreateClientError": {
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An enum representing what errors may have occurred.",
+                    "enum": [
+                        "NetworkError(1)",
+                        "ResourceNotFound(2)",
+                        "PermissionError(3)",
+                        "UnknownError(4)"
+                    ]
+                },
+                "created_clients": {
+                    "description": "An array of clients successfully created/updated.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Client"
+                    }
+                },
+                "failed_clients": {
+                    "description": "An array of clients that couldn't be created/updated.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Client"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "DeletedClientError": {
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An enum representing what errors may have occurred.",
+                    "enum": [
+                        "NetworkError(1)",
+                        "ResourceNotFound(2)",
+                        "PermissionError(3)",
+                        "UnknownError(4)"
+                    ]
+                },
+                "deleted_clients": {
+                    "description": "An array of clients successfully deleted.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Client"
+                    }
+                },
+                "failed_clients": {
+                    "description": "An array of clients that couldn't be deleted.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Client"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
