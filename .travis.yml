@@ -4,5 +4,9 @@ python:
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
+
+env:
+ENVIRONMENT=DEVELOPMENT
+
 # command to run tests
 script: py.test ./src/tests
