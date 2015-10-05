@@ -3,7 +3,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-domain = "tenengroup.com"
+domain = "flask-test.com"
 settings = {
   :hostname => "fb-wrapper",
   :box => "hashicorp/precise64",
