@@ -6,9 +6,6 @@ node default {
       command => '/usr/bin/apt-get update',
     }
 
-#    exec { 'set-environment':
-#        command => 'export ENVIRONMENT=DEVELOPMENT',
-#    }
 
     Exec["apt-update"] -> class{'python':} #-> Package <| |>
     include users
