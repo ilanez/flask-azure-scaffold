@@ -1,4 +1,4 @@
-### Description
+## Description
 A basic REST API provider.
 Uses Flask and Flask-API.
 
@@ -9,9 +9,18 @@ In order for the application to run, you must set the following environment vari
 * ENVIRONMENT - PRODUCTION/TEST/DEVELOPMENT
 
 
-### Notes
+
+## Development bootstrapping
+```bash
+git clone https://github.com/bbenzikry/flask-azure-scaffold
+cd flask-azure-scaffold
+vagrant up
+```
+
+
+## Notes
 * When running within an Azure web app context,  
 set the WSGI_LOG environment variable to a log file path to help with debugging.
 
 
-* Use Kudu to browse the directory structure(post-deployment)
+* Use Kudu to browse the directory structure.
