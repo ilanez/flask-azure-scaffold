@@ -5,8 +5,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 domain = "flask-test.com"
 settings = {
-  :hostname => "fb-wrapper",
-  :box => "hashicorp/precise64",
+  :hostname => "flask-wrapper",
+  :box => "ubuntu/trusty64",
   :ip => "192.168.33.10",
 }
 

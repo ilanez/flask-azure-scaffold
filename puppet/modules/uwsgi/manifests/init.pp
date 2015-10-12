@@ -5,24 +5,40 @@ class uwsgi {
         "gid" => "www-data",
         "socket" => "/tmp/uwsgi.sock",
         "logdate" => "",
-        "optimize" => 2,
         "processes" => 2,
         "master" => "",
         "die-on-term" => "",
         "logto" => "/var/log/uwsgi.log",
-        "chdir" => "/var/www/${hostname}.${domain}/src",
-        "module" => "app",
+        "chdir" => "/var/www/${hostname}.${domain}",
+        "plugin" => "python3",
+        "module" => "runserver",
         "callable" => "app",
     }
+
+  $env = $ENVIRONMENT
 
     package { "upstart":
         ensure => installed,
     }
     package { "uwsgi":
         ensure => installed,
-        provider => pip,
         require => [Class["python::packages"], Package["upstart"]],
     }
+
+    package { "uwsgi-plugin-python3":
+        ensure => installed,
+        require => Package["uwsgi"],
+    }
+
+
+#      exec{
+#      'update-uwsgi':
+#      require => Package["uwsgi-plugin-python3"],
+#      command => "/usr/bin/update-alternatives --install /usr/local/bin/uwsgi uwsgi /usr/bin/uwsgi_python3 100 && /sbin/initctl reload-configuration",
+#      path => "/",
+#    }
+
+
     file { "/etc/init/uwsgi.conf":
         ensure => present,
         owner => "root",
