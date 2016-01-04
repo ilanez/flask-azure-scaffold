@@ -2,7 +2,7 @@
 A basic REST API provider.
 Uses Flask and Flask-API.
 
-![Build status](https://api.travis-ci.org/bbenzikry/flask-azure-scaffold.svg?branch=master)
+[![Build status](https://api.travis-ci.org/bbenzikry/flask-azure-scaffold.svg?branch=master)](https://travis-ci.org/bbenzikry/flask-azure-scaffold)
 
 In order for the application to run, you must set the following environment variables:
 
